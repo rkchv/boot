@@ -1,0 +1,6 @@
+- hosts: localhost
+  vars
+    test_var: "Test var",
+    ansible_user: "roman"
+  tasks:
+    - include: tasks/brew.yml
