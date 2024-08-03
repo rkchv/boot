@@ -1,0 +1,35 @@
+- name: Install zsh
+  homebrew: name=zsh
+
+- name: Add zsh to /etc/shells
+  become: yes
+  lineinfile:
+    path: /etc/shells
+    line: /usr/local/bin/zsh
+    state: present
+
+- name: Change shell to zsh
+  become: yes
+  shell: chsh -s $(which zsh)
+  args:
+    executable: /bin/bash
+
+- name: Check that the somefile.conf exists
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+  register: oh_my_zsh
+
+- name: Clone omyzsh repository
+  git:
+    repo: "https://github.com/ohmyzsh/ohmyzsh.git"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+    version: master
+    update: yes
+  when: oh_my_zsh.stat.exists == False
+
+- name: Clone zsh-autosuggestions repository
+  git:
+    repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    version: master
+    update: yes

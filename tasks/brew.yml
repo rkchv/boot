@@ -1,7 +1,7 @@
 - name: Check if Homebrew is installed
   stat:
     path: /usr/local/bin/brew
-    register: brew_exists
+  register: brew_exists
 
 - name: Install Homebrew
   command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
