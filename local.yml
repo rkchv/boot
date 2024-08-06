@@ -4,5 +4,7 @@
     dir: "/Users/{{ user }}/projects/ansible"
   tasks:
     - include_tasks: tasks/brew.yml
+    - include_tasks: tasks/git.yml
     - include_tasks: tasks/zsh.yml
+    # - include_tasks: tasks/neovim.yml
     - include_tasks: tasks/dotfiles.yml
