@@ -3,6 +3,7 @@
 
 - name: Clone .dotfiles
   command: cp -r "{{ dir }}/.dotfiles" "{{ lookup('env', 'HOME') }}/.dotfiles"
+  tags: stow
 
 - name: Get list of dotfile directories
   find:
