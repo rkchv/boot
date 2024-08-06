@@ -1,0 +1,13 @@
+- name: Set global Git username
+  ansible.builtin.git_config:
+    name: user.name
+    value: "Roman Kochnev"
+    scope: global
+  tags: git
+
+- name: Set global Git email
+  ansible.builtin.git_config:
+    name: user.email
+    value: "rkochnevv@gmail.com"
+    scope: global
+  tags: git
