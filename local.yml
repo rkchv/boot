@@ -1,10 +1,11 @@
+# ansible-playbook local.yml --ask-become-pass --ask-vault-pass
+
 - hosts: localhost
   vars:
-    user: roman
-    dir: "/Users/{{ user }}/projects/ansible"
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
   tasks:
-    - include_tasks: tasks/brew.yml
+    - include_tasks: tasks/ssh.yml
     - include_tasks: tasks/git.yml
     - include_tasks: tasks/zsh.yml
-    # - include_tasks: tasks/neovim.yml
     - include_tasks: tasks/dotfiles.yml
