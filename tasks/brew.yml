@@ -2,13 +2,42 @@
   stat:
     path: /usr/local/bin/brew
   register: brew_exists
+  tags:
+    - brew-install
+    - brew-unistall
 
 - name: Install Homebrew
-  command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   args:
     creates: /usr/local/bin/brew
   when: not brew_exists.stat.exists
+  tags:
+    - brew-install
+    - install
 
 - name: Update Homebrew
   command: brew update
   when: brew_exists.stat.exists
+  tags:
+    - brew-install
+    - install
+
+- name: Uninstall Homebrew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+  when: brew_exists.stat.exists
+  tags:
+    - brew-uninstall
+    - uninstall
+- name: Remove Homebrew directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /usr/local/Homebrew
+    - /usr/local/Cellar
+    - /usr/local/Caskroom
+    - /usr/local/bin/brew
+  when: brew_exists.stat.exists
+  tags:
+    - brew-uninstall
+    - uninstall
