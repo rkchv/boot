@@ -1,11 +1,24 @@
-- name: Install stow
+- name: Install Stow
   homebrew: name=stow
+  tags:
+    - install
+    - dotfiles
+    - stow
 
 - name: Clone .dotfiles
-  command: cp -r "{{ dir }}/.dotfiles" "{{ lookup('env', 'HOME') }}/.dotfiles"
-  tags: stow
+  git:
+    repo: "git@github.com:rkchv/.dotfiles.git"
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    recursive: yes
+    update: yes
+    accept_hostkey: yes
+    version: main
+  tags:
+    - install
+    - dotfiles
+    - stow
 
-- name: Get list of dotfile directories
+- name: Get list of .dotfiles directories
   find:
     paths: "{{ lookup('env', 'HOME') }}/.dotfiles"
     file_type: directory
@@ -18,4 +31,7 @@
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
   loop: "{{ dotfiles_dirs.files }}"
-  tags: stow
+  tags:
+    - install
+    - dotfiles
+    - stow
