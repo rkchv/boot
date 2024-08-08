@@ -27,7 +27,7 @@
   tags: stow
 
 - name: Stow all dotfiles
-  command: stow "{{ item.path | basename }}"
+  shell: stow "{{ item.path | basename }}"
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
   loop: "{{ dotfiles_dirs.files }}"
@@ -35,3 +35,15 @@
     - install
     - dotfiles
     - stow
+
+- name: Ensure tmux-sessionizer is executable
+  file:
+    path: "~/.local/scripts/tmux-sessionizer"
+    mode: "0755"
+    state: file
+
+- name: Ensure tmux-cht.sh script is executable
+  file:
+    path: "~/.local/scripts/tmux-cht.sh"
+    mode: "0755"
+    state: file
