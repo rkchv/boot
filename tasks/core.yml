@@ -1,0 +1,11 @@
+- name: Install dependencies for building Neovim
+  homebrew:
+    name:
+      - ninja
+      - libtool
+      - automake
+      - cmake
+      - pkg-config
+      - gettext
+      - curl
+    state: present
