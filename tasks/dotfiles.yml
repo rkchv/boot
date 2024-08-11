@@ -36,14 +36,15 @@
     - dotfiles
     - stow
 
-- name: Ensure tmux-sessionizer is executable
-  file:
-    path: "~/.local/scripts/tmux-sessionizer"
-    mode: "0755"
-    state: file
+- name: Find all files in the directory
+  find:
+    paths: "{{ lookup('env', 'HOME') }}/.local/scripts"
+    recurse: yes
+    file_type: file
+  register: found_files
 
-- name: Ensure tmux-cht.sh script is executable
+- name: Set executable permissions on found files
   file:
-    path: "~/.local/scripts/tmux-cht.sh"
-    mode: "0755"
-    state: file
+    path: "{{ item.path }}"
+    mode: "0700"
+  loop: "{{ found_files.files }}"

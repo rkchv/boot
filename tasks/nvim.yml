@@ -1,0 +1,30 @@
+- name: Remove neovim
+  shell: rm -rf ~/neovim
+  tags:
+    - install
+    - neovim
+
+- name: Clone Neovim
+  git:
+    repo: "git@github.com:neovim/neovim.git"
+    dest: "{{ lookup('env', 'HOME') }}/neovim"
+    update: yes
+    version: stable
+    accept_hostkey: yes
+
+  tags:
+    - install
+    - neovim
+
+- name: Build neovim
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make -j 8"
+  tags:
+    - install
+    - neovim
+
+- name: Install neovim
+  become: true
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
+  tags:
+    - install
+    - neovim
