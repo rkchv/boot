@@ -1,3 +1,9 @@
+- name: Remove .dotfiles
+  shell: rm -rf ~/.dotfiles
+  tags:
+    - install
+    - neovim
+
 - name: Install Stow
   homebrew: name=stow
   tags:
