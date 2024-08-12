@@ -1,0 +1,6 @@
+- name: Install Speed dependencies
+  homebrew:
+    name:
+      - ripgrep
+      - fd
+    state: present
