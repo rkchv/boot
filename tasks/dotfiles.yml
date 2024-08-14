@@ -4,6 +4,11 @@
     - install
     - neovim
 
+- name: Remove init.vim file
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/nvim/init.vim"
+    state: absent
+
 - name: Install Stow
   homebrew: name=stow
   tags:
