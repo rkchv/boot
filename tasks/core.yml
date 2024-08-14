@@ -1,4 +1,4 @@
-- name: Install dependencies for building Neovim
+- name: Install Core dependencies
   homebrew:
     name:
       - ninja
