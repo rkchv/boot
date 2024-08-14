@@ -9,6 +9,7 @@
     - include_tasks: tasks/ssh.yml
     - include_tasks: tasks/git.yml
     - include_tasks: tasks/core.yml
+    - include_tasks: tasks/speed.yml
     - include_tasks: tasks/zsh.yml
     - include_tasks: tasks/iterm2.yml
     - include_tasks: tasks/nvim.yml
