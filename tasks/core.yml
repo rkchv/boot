@@ -8,4 +8,6 @@
       - pkg-config
       - gettext
       - curl
+      - go
+      - gopls
     state: present
