@@ -2,3 +2,15 @@
   homebrew_cask:
     name: iterm2
     state: present
+
+- name: Stow iTerm2 configuration
+  command: stow --target="{{ lookup('env', 'HOME') }}/Library/Application Support/iTerm2/DynamicProfiles" iterm2
+  args:
+    chdir: ~/.dotfiles
+
+- name: Restart iTerm2 to apply changes
+  shell: |
+    killall iTerm2 || true
+    open -a iTerm
+  args:
+    executable: /bin/bash
