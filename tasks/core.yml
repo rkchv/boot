@@ -1,13 +1,47 @@
-- name: Install Core dependencies
+- name: Update Homebrew
+  homebrew:
+    update_homebrew: yes
+  when: ansible_facts['os_family'] == 'Darwin'
+
+# =============================================================================
+# need to install lsp server using node
+# and npm maybe
+
+- name: Install Core Packages
   homebrew:
     name:
-      - ninja
-      - libtool
-      - automake
       - cmake
-      - pkg-config
+      - libtool
       - gettext
       - curl
       - go
+      - buf
       - gopls
+      - staticcheck
+      - govulncheck
+      - goimports
+      - golangci-lint
+      - kind
+      - kubectl
+      - kustomize
+      - pgcli
+      - fd
+      - fzf
+      - tmux
+      - ripgrep
+      - hey
+      - watch
+      - stow
+      - node
+      - docker
     state: present
+  when: ansible_facts['os_family'] == 'Darwin'
+
+# =============================================================================
+
+- name: Install Docker
+  homebrew:
+    name: docker
+    cask: yes
+    state: present
+  when: ansible_facts['os_family'] == 'Darwin'

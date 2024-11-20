@@ -2,14 +2,14 @@
   homebrew: name=zsh
 
 - name: Add zsh to /etc/shells
-  become: yes
+  become: true
   lineinfile:
     path: /etc/shells
     line: /usr/local/bin/zsh
     state: present
 
 - name: Change shell to zsh
-  become: yes
+  become: true
   shell: chsh -s $(which zsh)
   args:
     executable: /bin/bash

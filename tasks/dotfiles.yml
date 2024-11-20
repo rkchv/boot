@@ -11,10 +11,6 @@
 
 - name: Install Stow
   homebrew: name=stow
-  tags:
-    - install
-    - dotfiles
-    - stow
 
 - name: Clone .dotfiles
   git:
@@ -24,10 +20,6 @@
     update: yes
     accept_hostkey: yes
     version: main
-  tags:
-    - install
-    - dotfiles
-    - stow
 
 - name: Get list of .dotfiles directories
   find:
@@ -35,17 +27,12 @@
     file_type: directory
     depth: 1
   register: dotfiles_dirs
-  tags: stow
 
 - name: Stow all dotfiles
   shell: stow "{{ item.path | basename }}"
   args:
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
   loop: "{{ dotfiles_dirs.files }}"
-  tags:
-    - install
-    - dotfiles
-    - stow
 
 - name: Find all files in the directory
   find:
