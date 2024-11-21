@@ -7,12 +7,3 @@
   command:
     cmd: ./make.sh
     chdir: "$HOME/lsp/lua-language-server"
-
-- name: Add lua-language-server to PATH
-  lineinfile:
-    path: "$HOME/.zshrc"
-    line: 'export PATH="$HOME/lsp/lua-language-server/bin:$PATH"'
-    create: yes
-
-- name: Source the .zshrc file
-  shell: source ~/.zshrc
