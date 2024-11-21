@@ -1,16 +1,10 @@
 - name: Remove .dotfiles
   shell: rm -rf ~/.dotfiles
-  tags:
-    - install
-    - neovim
 
 - name: Remove init.vim file
   file:
     path: "{{ lookup('env', 'HOME') }}/.config/nvim/init.vim"
     state: absent
-
-- name: Install Stow
-  homebrew: name=stow
 
 - name: Clone .dotfiles
   git:

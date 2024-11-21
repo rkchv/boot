@@ -1,0 +1,18 @@
+- name: Clone the lua-language-server repository
+  git:
+    repo: https://github.com/sumneko/lua-language-server.git
+    dest: "$HOME/lsp/lua-language-server"
+
+- name: Build the Lua language server
+  command:
+    cmd: ./make.sh
+    chdir: "$HOME/lsp/lua-language-server"
+
+- name: Add lua-language-server to PATH
+  lineinfile:
+    path: "$HOME/.zshrc"
+    line: 'export PATH="$HOME/lsp/lua-language-server/bin:$PATH"'
+    create: yes
+
+- name: Source the .zshrc file
+  shell: source ~/.zshrc

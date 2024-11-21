@@ -1,0 +1,21 @@
+- name: Check if NVM is installed
+  stat:
+    path: "$HOME/.nvm/nvm.sh"
+  register: nvm_installed
+
+# =============================================================================
+
+- name: NVM if not already installed
+  shell: |
+    git clone https://github.com/nvm-sh/nvm.git "$HOME/.nvm"
+    cd "$HOME/.nvm"
+    git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+    . "$HOME/.nvm/nvm.sh"
+  when: not nvm_installed.stat.exists
+
+# =============================================================================
+
+- name: Install Node.js using NVM
+  shell: |
+    . "$HOME/.nvm/nvm.sh" && nvm install node
+  when: not nvm_installed.stat.exists
