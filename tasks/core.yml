@@ -49,6 +49,7 @@
       - stow
       - zsh
       - shfmt
+      - shellcheck
       - git
     state: present
     install_options: skip-post-install

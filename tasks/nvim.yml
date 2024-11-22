@@ -1,17 +1,21 @@
 - name: Remove neovim
-  shell: rm -rf ~/neovim
+  shell: rm -rf {{ lookup('env', 'HOME') }}/neovim
 
 - name: Clone Neovim
   git:
     repo: "git@github.com:neovim/neovim.git"
     dest: "{{ lookup('env', 'HOME') }}/neovim"
-    update: yes
+    update: true
     version: stable
-    accept_hostkey: yes
+
+- name: Compile neovim
+  command:
+    cmd: make CMAKE_BUILD_TYPE=RelWithDebInfo
+    chdir: "{{ lookup('env', 'HOME') }}/neovim"
 
 - name: Build neovim
-  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make -j 8"
-
-- name: Install neovim
   become: true
-  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
+  command:
+    cmd: make install
+    chdir: "{{ lookup('env', 'HOME') }}/neovim"
+
