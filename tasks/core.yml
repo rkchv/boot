@@ -48,6 +48,7 @@
       - watch
       - stow
       - zsh
+      - shfmt
       - git
     state: present
     install_options: skip-post-install

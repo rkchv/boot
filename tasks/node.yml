@@ -19,3 +19,5 @@
   shell: |
     . "$HOME/.nvm/nvm.sh" && nvm install node
   when: not nvm_installed.stat.exists
+
+# =============================================================================
