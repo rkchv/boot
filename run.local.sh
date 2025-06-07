@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ansible-playbook ./local.yml --vault-password-file ./secret.txt
+ansible-playbook ./local.yml --vault-password-file ./secret.txt --connection=local
