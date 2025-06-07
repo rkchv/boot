@@ -8,6 +8,6 @@
 - name: Set global Git email
   ansible.builtin.git_config:
     name: user.email
-    value: "rkochnevv@gmail.com"
+    value: "hello@kochnev.tech"
     scope: global
   tags: git
