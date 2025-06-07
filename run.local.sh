@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ansible-playbook -i ./inventory.ini --ask-become-pass ./local.yml
+ansible-playbook -i ./inventory.ini ./local.yml --vault-password-file ./secret.txt
