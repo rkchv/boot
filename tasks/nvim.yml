@@ -1,3 +1,12 @@
+- name: Install neovim build dependencies
+  community.general.homebrew:
+    name:
+      - ninja
+      - cmake
+      - gettext
+      - curl
+    state: present
+
 - name: Remove neovim
   shell: rm -rf {{ lookup('env', 'HOME') }}/neovim
 
