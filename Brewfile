@@ -65,7 +65,7 @@ brew "kubectx"
 brew "opentofu"
 
 # --- Casks ---
-cask "docker-desktop"
+cask "orbstack"
 cask "raycast"
 
 # --- Fonts ---

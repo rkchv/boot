@@ -121,7 +121,7 @@ Packages are declared in the [`Brewfile`](./Brewfile) and installed with
 - `opentofu` — infrastructure as code (open-source Terraform fork; `tofu`)
 
 **Casks**
-- `docker-desktop` — Docker Desktop
+- `orbstack` — fast, lightweight Docker & Linux runtime (Docker Desktop replacement)
 - `raycast` — launcher / productivity app
 
 **Fonts**
