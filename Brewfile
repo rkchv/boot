@@ -67,6 +67,7 @@ brew "opentofu"
 # --- Casks ---
 cask "orbstack"
 cask "raycast"
+cask "zed"
 
 # --- Fonts ---
 cask "font-cascadia-code"

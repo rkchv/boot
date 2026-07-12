@@ -123,6 +123,7 @@ Packages are declared in the [`Brewfile`](./Brewfile) and installed with
 **Casks**
 - `orbstack` — fast, lightweight Docker & Linux runtime (Docker Desktop replacement)
 - `raycast` — launcher / productivity app
+- `zed` — high-performance code editor
 
 **Fonts**
 - `font-cascadia-code` — Cascadia Code
